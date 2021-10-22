@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br>
+ <section class="homeSection" id="home">
+
+        <div class="content grid ">
+            <div class="homeText">
+                
+                <h1 class="introText">{{pr.name}}</h1>
+                <p class="homeParagraph">
+                    {{pr.description}}
+                </p>
+                    <h3> Price : ₹  {{pr.price}}</h3>
+                    <h4> Stock left : {{pr.stock}}</h4>
+                   
+
+                {% if pr.stock <= 0 %}
+                    <h1 style="color:red">Sorry! No Stock Left</h1>
+                    {% else %}
+                    <div class="btn">
+                    <a href="{% url 'addcart' pr.id %}" class="tm-btn tm-btn-1 tm-link-to-services">Add to cart</a>
+                </div>
+                {% endif %}
+
+            </div>
+
+            <div class="homeImg">
+                <img src="{{pr.image.url}}" alt="Home Food Image" class="home_Image">
+            </div>
+
+        </div>
+
+        
+
+    </section>
+<br>
+
+{% endblock %}

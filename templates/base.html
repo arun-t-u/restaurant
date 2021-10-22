@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Made Restaurant</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+
+<!-- Top Bar -->
+    <header class="header headerBG">
+        <div class="logoDiv">
+        {% if user.is_authenticated %}
+            <h4 > Hi !! {{user.username}}</h4>
+        {% else %}
+            <a href="{% url 'index' %}"><img src="{% static 'images/Logo2.png' %}" alt="Logo Image" class="logo"></a>
+        {% endif %}
+        </div>
+        <div class="navBar" id="nav_bar">
+            <ul class="navList">
+            
+                <li class="navItem "><a href="{% url 'index' %}" class="navLink">Home</a></li>
+                {% if '/' == request.path %}
+                <li class="navItem"><a href="#shop" class="navLink">Shop</a></li>
+                {% else %}
+                <li class="navItem"><a href="{% url 'index' %}" class="navLink">Shop</a></li>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <li class="navItem"><a href="{% url 'logout' %}" class="navLink">Logout</a></li>
+                {% else %}
+                <li class="navItem"><a href="{% url 'login' %}" class="navLink">Login</a></li>
+                <li class="navItem"><a href="{% url 'register' %}"   class="navLink">register</a></li>
+                {% endif %}
+<!--Search Bar-->
+                <li class="navItem">
+                    <form action="{% url 'search' %}" method="get">
+                    <fieldset>
+                        <input type="text" name="q" placeholder="Enter search item&hellip;">
+                        <button class="btn btn-outline-success my-2 my-sm-0">Search</button>
+                    </fieldset>
+                    </form>
+                </li>
+
+            </ul>
+            
+            <div class="closeIconDiv" id="closeId">
+                <i class="bx bxs-x-circle icon closeIcon"></i>
+            </div>
+        </div>
+
+<!--Drop Down For Cateegory-->  
+        {% if '/' == request.path %}      
+        <div class="dropdown contactBtn">
+            <button class="dropbtn contactLink">Filter</button>
+            <div class="dropdown-content">
+                    <a href="/">All</a>
+                {% for i in ct %}
+                    <a href={{i.get_url}}>{{i.name}}</a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        
+            <div class="cartDiv">
+                <a href="{% url 'CartDetails' %}">  <i class='bx bxs-cart-alt icon cartIcon'>{{itc}}</i></a>
+            </div>
+        
+    
+        
+        <div class="toggleDiv" id="toggleId">
+            <i class='bx bx-dialpad-alt icon toggleIcon'></i>
+        </div>
+
+    </header>
+    
+    {% block content %}
+    {% endblock %}
+
+    <!-- Footer -->
+    <section class="footerSection">
+        
+        <div class="copyrightDiv">
+            For educational purpose only --> &nbsp<span>Arun</span>
+        </div>
+    </section>
+    
+    
+</body>
+</html>

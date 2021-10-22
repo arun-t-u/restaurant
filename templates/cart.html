@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br><br><br>
+    <section class="cartSection  ">
+<!--Heading--><br>  
+   <center><h1>Shopping Bag ({{cn}})</h1></center>
+
+<!-- Cart items-->
+       <div class=" cartGrid grid">
+        <section class="middleSection ">
+        {% for i in ci %}
+            <div class="firstSide">
+                <a href="{{i.product.get_url}}"> <img src="{{ i.product.image.url }}" alt="Food Image"></a>
+               <div class="imgDivv">
+                  <div class="topSide">
+                      <span class="itemName"><a href="{{i.product.get_url}}">  {{i.product.name}} </a></span> 
+                      <span class="closeIcon" id="closeIcon"><a href="{% url 'remove' i.product.id %}"><i class='bx bx-x icon'></a></i></span>
+                  </div>
+                  <span class="itemGram">Price : ₹ {{i.product.price}}</span>
+                  <div class="bottomSide">
+                      <span class="itemPrice">Subtotal ({{i.quantity}} items) :&nbsp ₹  {{i.total}}</span>
+                      <div class="controls">
+                          <span class="minusIcon"><a href="{% url 'cart_minus' i.product.id %}">-</a></span>
+                          <span class="count" id="count">{{i.quantity}}</span>
+                          <span class="plusIcon"><a href="{% url 'addcart' i.product.id %}">+</a></span>
+                      </div>
+                   </div>
+               </div>
+            </div>
+        {% endfor %}
+          </section>
+
+<!-- Payment Section -->
+          <section class="calcSection ">
+              <div class="row">
+              <span class="rowTitle">Sub total</span>
+              <span class="rowAmount">₹&nbsp{{t}}</span>
+              </div>
+              <div class="row">
+              <span class="rowTitle">Delivery Fee</span>
+              <span class="rowAmount">₹&nbsp30</span>
+              </div>
+              <div class="row">
+              <span class="rowTitle">Grand Total</span>
+              <span class="rowAmount">₹&nbsp{{gt}}</span>
+              </div>
+
+              <div class="btn">
+                  <button type="button">Proceed to checkout</button>
+              </div>
+          </section>
+       </div>
+      </section>
+
+{% endblock %}

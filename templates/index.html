@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!--Home section-->
+    <section class="homeSection" id="home">
+        <div class="content grid ">
+            <div class="homeText">
+                <span>WELCOME TO OUR</span>
+                <h1 class="introText">Home Made Restaurant</h1>
+                <p class="homeParagraph">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias, voluptatem quaerat illum earum suscipit rem excepturi nulla sapiente est vitae?
+                </p>
+                <div class="btn">
+                    <a href="#shop">Order Now</a>
+                </div>
+            </div>
+            <div class="homeImg">
+                <img src="{% static 'images/8.png' %}" alt="Home Food Image" class="home_Image">
+            </div>
+        </div>
+    </section>
+
+   
+<!-- PRODUCT SECTION  -->
+    <section class="productionSection section" id="shop"> 
+        <div class="sectionIntro">
+            <div class="headerInfo container">
+                <h2 class="title">Our Products</h2>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis, nulla!</p>
+            </div>
+        </div>
+
+        <div class="boxesContainer container">
+
+            {% for i in pg.object_list %}
+
+              <div class="boxContent">
+                  <div class="boxImgDiv">
+                      <a href="{{i.get_url}}"><img src="{{i.image.url}}" alt="Food Image" class="boxImg"></a>
+                  </div>
+                  <div class="imgDesc">
+                      <a href="{{i.get_url}}"><span class="imageTitle">{{i.name}}</span></a>
+                  </div>
+                    <p>{{i.description|truncatechars:60}}</p>
+                    <h5> Stock left:{{i.stock}}</h5>
+                    <span class="boxImgPrice">₹ {{i.price}}</span><br>
+           
+              </div>
+
+            {% endfor %}
+
+        </div>
+    </section> 
+
+
+<!-- Paginator section -->
+<center> 
+  {% for i in pg.paginator.page_range %}
+    <a href="?page={{i}}" class="btn btn-light btn-sm {% if pg.number == i %} active {% endif %}">{{i}}</a>
+  {% endfor %}
+</center>
+
+
+{% endblock %}

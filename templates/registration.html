@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="contactSection section" id="contact">
+<div class="contactContent container">
+        <div class="sectionIntro">
+            <h2 class="title" style="color:blue">
+                Registration
+            </h2>
+            <p class="subTitle">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+        <div>
+        {% for message in messages %}
+            <h4  style="color:red"> {{message}} </h4>
+        {% endfor %}
+ <div class="contactRow">
+            <div class="col">
+                <form action="register" method="post">
+                {% csrf_token %} 
+                    <div class="names">
+                        <div>
+                        <input type="text" name="username" required placeholder="Username">
+                        </div>
+                        <div>
+                        <input type="text"  name="first_name" required placeholder="First Name">
+                        </div>
+                        <div>
+                        <input type="text"  name="last_name" required placeholder="Last Name">
+                        </div>
+                        <div>
+                        <input type="email" name="email"required placeholder="Email">
+                        </div>
+                        <div>
+                        <input type="password" name="password" required placeholder="Password">
+                        </div>
+                        <div>
+                        <input type="password" name="confirm_password" required placeholder="Password again">
+                        </div>
+                    </div>
+                    <button type="submit" value="registration">Sign UP</button>
+                </form>
+            </div>
+
+            <div class="col">
+                <img src="{% static 'images/7.png' %}" alt="Home Food Image" class="home_Image"> </div>
+            </div>
+    </div>
+ </section>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="contactSection section" id="contact">
+<div class="contactContent container">
+           <div class="sectionIntro">
+            <h2 class="title" style="color:blue">
+                Login
+            </h2>
+            <p class="subTitle">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+        </div>
+ <div class="contactRow">
+            <div class="col">
+                <form action="login" method="post">
+                {% csrf_token %}
+                    <div class="names">
+                        <div>
+                         <label for="username">Username <sup>*</sup></label> 
+                        <input type="text" name="username" required placeholder="Username">
+                        </div>
+                        <div>
+                        <label for="password">Password <sup>*</sup></label> 
+                        <input type="password" name="password" required placeholder="Password">
+                        </div>
+                    </div>
+                    <button type="submit" value="login">Login</button>
+                </form>
+            </div>
+
+            <div class="col">
+                <img src="{% static 'images/7.png' %}" alt="Home Food Image" class="home_Image">
+            </div>
+            
+        </div>
+    </div>
+ </section>
+{% endblock %}

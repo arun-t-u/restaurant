@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<section class="productionSection section" id="shop"> 
+        <div class="sectionIntro">
+            <div class="headerInfo container">
+                <h2 class="title">Our Products</h2>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Blanditiis, nulla!</p>
+            </div>
+        </div>
+<div class="boxesContainer container">
+
+            {% for i in pr %}
+
+              <div class="boxContent">
+                  <div class="boxImgDiv">
+                      <a href="{{i.get_url}}"><img src="{{i.image.url}}" alt="Food Image" class="boxImg"></a>
+                  </div>
+                  <div class="imgDesc">
+                      <a href="{{i.get_url}}"><span class="imageTitle">{{i.name}}</span></a>
+                  </div>
+                  
+                    <p>{{i.description|truncatechars:60}}</p>
+                    <h5> Stock left:{{i.stock}}</h5>
+                    <span class="boxImgPrice">
+                        ₹ {{i.price}}
+                    </span><br>
+              
+              </div>
+
+            {% endfor %}
+
+        </div>
+</section>
+{% endblock %}
