@@ -18,11 +18,11 @@ Welcome to the **Restaurant App**, a platform where users can browse food items,
 
 ### Hero Page
 
-![Hero Page](./media/readme-images/Hero-img-1.png)
+![Hero Page](./readme-images/Hero-img-1.png)
 
 ### Product Page
 
-![Product Page](./media/readme-images/products-image.png)
+![Product Page](./readme-images/products-image.png)
 
 ---
 
