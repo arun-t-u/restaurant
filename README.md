@@ -45,3 +45,20 @@ Clone the repository to your local machine:
 ```bash
 git clone https://github.com/your-username/restaurant-app.git
 cd restaurant-app
+
+### Set Up Virtual Environment
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+
+### Install Dependencies
+pip install -r requirements.txt
+
+### Database Setup
+python manage.py migrate
+
+### Create a Superuser
+python manage.py createsuperuser
+
+### Run the App
+python manage.py runserver
+
